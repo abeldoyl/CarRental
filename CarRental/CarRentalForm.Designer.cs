@@ -90,7 +90,6 @@
             AddressLabel.Size = new Size(49, 15);
             AddressLabel.TabIndex = 2;
             AddressLabel.Text = "Address";
-            AddressLabel.Click += this.label1_Click;
             // 
             // AddressTextBox
             // 
