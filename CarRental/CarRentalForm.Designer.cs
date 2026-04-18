@@ -194,9 +194,9 @@
             DistanceDrivenLabel.AutoSize = true;
             DistanceDrivenLabel.Location = new Point(411, 26);
             DistanceDrivenLabel.Name = "DistanceDrivenLabel";
-            DistanceDrivenLabel.Size = new Size(133, 15);
+            DistanceDrivenLabel.Size = new Size(102, 15);
             DistanceDrivenLabel.TabIndex = 12;
-            DistanceDrivenLabel.Text = "Distance Driven In Miles";
+            DistanceDrivenLabel.Text = "Distance Driven In";
             // 
             // DayChargeTextBox
             // 

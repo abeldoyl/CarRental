@@ -9,7 +9,7 @@ namespace CarRental
         }
 
         int customerNumberTotal = 0;
-        decimal milesDrivenTotal = 0;
+        decimal distanceDrivenTotal = 0;
         decimal totalCharges = 0;
         decimal customerMiles = 0;
         decimal amountDue = 0;
@@ -227,6 +227,89 @@ namespace CarRental
 
             return true;
         }
+   
+        decimal CalculateAAADiscount(decimal thisAmount)
+        {
+            decimal discount = 0;
+            if (AAACheckBox.Checked)
+            {
+                discount = thisAmount * 0.05m;
+            }
+            return discount;
+        }
+
+        decimal CalculateSeniorDiscount(decimal thisAmount)
+        {
+            decimal discount = 0;
+            if (SeniorCheckBox.Checked)
+            {
+                discount = thisAmount * 0.03m;
+            }
+            return discount;
+        }
+
+        private decimal CalculateDistanceDriven(decimal distanceDriven)
+        {
+            if (KilometersRadioButton.Checked)
+            {
+                DistanceDrivenLabel.Text = "Distance Driven in Kilometers";
+                distanceDriven = (decimal.Parse(EndingOdometerTextBox.Text) - decimal.Parse(BeginingOdometerTextBox.Text)) * 0.62m;
+            }
+            else if (MilesRadioButton.Checked)
+            {
+                DistanceDrivenLabel.Text = "Distance Driven in Miles";
+                distanceDriven = decimal.Parse(EndingOdometerTextBox.Text) - decimal.Parse(BeginingOdometerTextBox.Text);
+            }
+            DistanceDrivenTextBox.Text = distanceDriven.ToString();
+            customerMiles = distanceDriven;
+            return distanceDriven;
+        }
+
+        private decimal CalculateDistanceCharge(decimal distanceCharge)
+        {
+            if (customerMiles <= 200)
+            {
+                distanceCharge = 0.00m;
+                MileageChargeTextBox.Text = $"{distanceCharge:C}";
+            }
+            if (customerMiles >= 201 && customerMiles >= 500)
+            {
+                distanceCharge = customerMiles * 0.12m;
+                MileageChargeTextBox.Text = $"{distanceCharge:C}";
+            }
+            if (customerMiles >= 501)
+            {
+                distanceCharge = customerMiles * 0.10m;
+                MileageChargeTextBox.Text = $"{distanceCharge:C}";
+            }
+            return distanceCharge;
+        }
+
+      
+        private decimal CalculateDayCharge(decimal dayCharge)
+        {
+            dayCharge = decimal.Parse(NumberOfDaysTextBox.Text) * 15.00m;
+            DayChargeTextBox.Text = $"{dayCharge:C}";
+            return dayCharge;
+        }
+
+        void TotalCalculation()
+        {
+            decimal originalAmount = 0;
+            decimal distanceDriven = 0;
+            decimal distanceCharge = 0;
+            decimal dayCharge = 0;
+            decimal totalDiscount = 0;
+
+            CalculateDistanceDriven(distanceDriven);
+            distanceCharge = CalculateDistanceCharge(originalAmount);
+            dayCharge = CalculateDayCharge(originalAmount + distanceCharge);
+            totalDiscount += CalculateAAADiscount(originalAmount + distanceCharge + dayCharge);
+            totalDiscount += CalculateSeniorDiscount(originalAmount + distanceCharge + dayCharge);
+            MinusDiscountTextBox.Text = $"{totalDiscount:C}";
+            amountDue = (originalAmount + distanceCharge + dayCharge) - totalDiscount;
+            YouOweTextBox.Text = $"{amountDue:C}";
+        }
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
@@ -243,6 +326,7 @@ namespace CarRental
         {
             if (ValidateFields())
             {
+                TotalCalculation();
             }
             else
             {
