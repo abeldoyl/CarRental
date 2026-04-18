@@ -24,6 +24,8 @@ namespace CarRental
             CityTextBox.BackColor = Color.LightYellow;
             StateTextBox.Text = "";
             StateTextBox .BackColor = Color.LightYellow;
+            ZipCodeTextBox.Text = "";
+            ZipCodeTextBox .BackColor = Color.LightYellow;
             BeginingOdometerTextBox.Text = "";
             BeginingOdometerTextBox .BackColor = Color.LightYellow;
             EndingOdometerTextBox.Text = "";
@@ -105,12 +107,14 @@ namespace CarRental
                 else
                 {
                     BeginingOdometerTextBox.BackColor = Color.LightYellow;
+                    BeginingOdometerTextBox.Text = "";
                     valid = false;
                 }
             }
             catch (Exception)
             {
                 BeginingOdometerTextBox.BackColor = Color.LightYellow;
+                BeginingOdometerTextBox.Text = "";
                 valid = false;
             }
 
@@ -123,12 +127,14 @@ namespace CarRental
                 else
                 {
                     EndingOdometerTextBox.BackColor = Color.LightYellow;
+                    EndingOdometerLabel.Text = "";
                     valid = false;
                 }
             }
             catch (Exception)
             {
                 EndingOdometerTextBox.BackColor = Color.LightYellow;
+                EndingOdometerTextBox.Text = "";
                 valid = false;
             }
 
@@ -141,15 +147,85 @@ namespace CarRental
                 else
                 {
                     NumberOfDaysTextBox.BackColor = Color.LightYellow;
+                    NumberOfDaysTextBox.Text = "";
                     valid = false;
                 }
             }
             catch (Exception)
             {
                 NumberOfDaysTextBox.BackColor = Color.LightYellow;
+                NumberOfDaysTextBox.Text = "";
                 valid = false;
             }
             return valid;
+        }
+        private bool InputMessagesCheck()
+        {
+            bool valid = true;
+            string message = "";
+            if (CustomerNameTextBox.Text == "")
+            {
+                message += "Please enter a valid name.\n";
+            }
+            if (AddressTextBox.Text == "")
+            {
+                message += "Please enter a valid address.\n";
+            }
+            if (CityTextBox.Text == "")
+            {
+                message += "Please enter a valid city.\n";
+            }
+            if (StateTextBox.Text == "")
+            {
+                message += "Please enter a valid state.\n";
+            }
+            if (ZipCodeTextBox.Text == "")
+            {
+                message += "Please enter a valid zip code.\n";
+            }
+            try
+            {
+                if (int.Parse(BeginingOdometerTextBox.Text) < 0 || int.Parse(BeginingOdometerTextBox.Text) > (int.Parse(EndingOdometerTextBox.Text)))
+                {
+                    message += "Please enter a valid begining number that is less than or equal to the ending number.\n";
+                }
+            }
+            catch (Exception)
+            {
+                message += "Please enter a valid begining number that is less than or equal to the ending number.\n";
+            }
+            try
+            {
+
+                if (int.Parse(EndingOdometerTextBox.Text) < 0)
+                {
+                    message += "Please enter a valid ending number.\n";
+                }
+
+            }
+            catch (Exception)
+            {
+                message += "Please enter a valid ending number.\n";
+            }
+            try
+            {
+                if (int.Parse(NumberOfDaysTextBox.Text) < 0 || int.Parse(NumberOfDaysTextBox.Text) > 45)
+                {
+                    message += "Please enter a valid number of days (0-45).\n";
+                }
+            }
+            catch (Exception)
+            {
+                message += "Please enter a valid number of days (0-45).\n";
+            }
+
+            if (message != "")
+            {
+                valid = false;
+                MessageBox.Show(message);
+            }
+
+            return true;
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
@@ -157,9 +233,21 @@ namespace CarRental
             //Closes the form
             this.Close();
         }
+        
         private void ClearButton_Click(object sender, EventArgs e)
         {
             SetDefaults();
+        }
+
+        private void CalculateButton_Click(object sender, EventArgs e)
+        {
+            if (ValidateFields())
+            {
+            }
+            else
+            {
+                InputMessagesCheck();
+            }
         }
     }
 }

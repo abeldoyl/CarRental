@@ -98,14 +98,14 @@
             AddressTextBox.Location = new Point(188, 55);
             AddressTextBox.Name = "AddressTextBox";
             AddressTextBox.Size = new Size(100, 23);
-            AddressTextBox.TabIndex = 3;
+            AddressTextBox.TabIndex = 2;
             // 
             // ZipCodeTextBox
             // 
             ZipCodeTextBox.Location = new Point(188, 154);
             ZipCodeTextBox.Name = "ZipCodeTextBox";
             ZipCodeTextBox.Size = new Size(100, 23);
-            ZipCodeTextBox.TabIndex = 7;
+            ZipCodeTextBox.TabIndex = 5;
             // 
             // ZipCodeLabel
             // 
@@ -121,7 +121,7 @@
             CityTextBox.Location = new Point(188, 89);
             CityTextBox.Name = "CityTextBox";
             CityTextBox.Size = new Size(100, 23);
-            CityTextBox.TabIndex = 5;
+            CityTextBox.TabIndex = 3;
             // 
             // CityLabel
             // 
@@ -137,7 +137,7 @@
             EndingOdometerTextBox.Location = new Point(188, 220);
             EndingOdometerTextBox.Name = "EndingOdometerTextBox";
             EndingOdometerTextBox.Size = new Size(100, 23);
-            EndingOdometerTextBox.TabIndex = 11;
+            EndingOdometerTextBox.TabIndex = 7;
             // 
             // EndingOdometerLabel
             // 
@@ -153,7 +153,7 @@
             BeginingOdometerTextBox.Location = new Point(188, 186);
             BeginingOdometerTextBox.Name = "BeginingOdometerTextBox";
             BeginingOdometerTextBox.Size = new Size(100, 23);
-            BeginingOdometerTextBox.TabIndex = 9;
+            BeginingOdometerTextBox.TabIndex = 6;
             // 
             // BeginingOdometerLabel
             // 
@@ -169,7 +169,7 @@
             NumberOfDaysTextBox.Location = new Point(188, 254);
             NumberOfDaysTextBox.Name = "NumberOfDaysTextBox";
             NumberOfDaysTextBox.Size = new Size(100, 23);
-            NumberOfDaysTextBox.TabIndex = 15;
+            NumberOfDaysTextBox.TabIndex = 8;
             // 
             // NumberOfDaysLabel
             // 
@@ -342,6 +342,7 @@
             CalculateButton.TabIndex = 30;
             CalculateButton.Text = "Calculate";
             CalculateButton.UseVisualStyleBackColor = true;
+            CalculateButton.Click += CalculateButton_Click;
             // 
             // ClearButton
             // 
@@ -351,7 +352,7 @@
             ClearButton.TabIndex = 31;
             ClearButton.Text = "Clear";
             ClearButton.UseVisualStyleBackColor = true;
-            ClearButton.Click += this.ClearButton_Click;
+            ClearButton.Click += ClearButton_Click;
             // 
             // SummaryButton
             // 
@@ -377,7 +378,7 @@
             StateTextBox.Location = new Point(188, 121);
             StateTextBox.Name = "StateTextBox";
             StateTextBox.Size = new Size(100, 23);
-            StateTextBox.TabIndex = 35;
+            StateTextBox.TabIndex = 4;
             // 
             // StateLabel
             // 
