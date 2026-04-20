@@ -23,15 +23,15 @@ namespace CarRental
             CityTextBox.Text = "";
             CityTextBox.BackColor = Color.LightYellow;
             StateTextBox.Text = "";
-            StateTextBox .BackColor = Color.LightYellow;
+            StateTextBox.BackColor = Color.LightYellow;
             ZipCodeTextBox.Text = "";
-            ZipCodeTextBox .BackColor = Color.LightYellow;
+            ZipCodeTextBox.BackColor = Color.LightYellow;
             BeginingOdometerTextBox.Text = "";
-            BeginingOdometerTextBox .BackColor = Color.LightYellow;
+            BeginingOdometerTextBox.BackColor = Color.LightYellow;
             EndingOdometerTextBox.Text = "";
             EndingOdometerTextBox.BackColor = Color.LightYellow;
             NumberOfDaysTextBox.Text = "";
-            NumberOfDaysTextBox .BackColor = Color.LightYellow;
+            NumberOfDaysTextBox.BackColor = Color.LightYellow;
             MilesRadioButton.Checked = true;
             DistanceDrivenTextBox.Text = "";
             MileageChargeTextBox.Text = "";
@@ -98,8 +98,8 @@ namespace CarRental
 
             try
             {
-                if (int.Parse(BeginingOdometerTextBox.Text) >= 0 && 
-                   (int.Parse(BeginingOdometerTextBox.Text)) < 
+                if (int.Parse(BeginingOdometerTextBox.Text) >= 0 &&
+                   (int.Parse(BeginingOdometerTextBox.Text)) <
                    (int.Parse(EndingOdometerTextBox.Text)))
                 {
                     BeginingOdometerTextBox.BackColor = Color.White;
@@ -227,7 +227,7 @@ namespace CarRental
 
             return true;
         }
-   
+
         decimal CalculateAAADiscount(decimal thisAmount)
         {
             decimal discount = 0;
@@ -285,7 +285,7 @@ namespace CarRental
             return distanceCharge;
         }
 
-      
+
         private decimal CalculateDayCharge(decimal dayCharge)
         {
             dayCharge = decimal.Parse(NumberOfDaysTextBox.Text) * 15.00m;
@@ -313,10 +313,17 @@ namespace CarRental
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
-            //Closes the form
-            this.Close();
+            DialogResult result = MessageBox.Show("Do you want to exit?", "Exit", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
+            }
+            else
+            {
+                return;
+            }
         }
-        
+
         private void ClearButton_Click(object sender, EventArgs e)
         {
             SetDefaults();
@@ -324,6 +331,7 @@ namespace CarRental
 
         private void CalculateButton_Click(object sender, EventArgs e)
         {
+            customerNumberTotal++;
             if (ValidateFields())
             {
                 TotalCalculation();
@@ -332,6 +340,66 @@ namespace CarRental
             {
                 InputMessagesCheck();
             }
+        }
+
+        private void SummaryButton_Click(object sender, EventArgs e)
+        {
+            distanceDrivenTotal = distanceDrivenTotal + customerMiles;
+            totalCharges = totalCharges + amountDue;
+            if (MilesRadioButton.Checked)
+            {
+                MessageBox.Show($"Total Customer:   {customerNumberTotal}" + "\n" +
+                                $"Total Miles:      {distanceDrivenTotal}" + "\n" +
+                                $"Total Charges:    ${totalCharges}");
+
+            }
+            if (KilometersRadioButton.Checked)
+            {
+                MessageBox.Show($"Total Customer:   {customerNumberTotal}" + "\n" +
+                                $"Total Kilometers: {distanceDrivenTotal}" + "\n" +
+                                $"Total Charges:    ${totalCharges}");
+
+            }
+            SetDefaults();
+        }
+        private void CustomerNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            ValidateFields();
+        }
+
+        private void AddressTextBox_TextChanged(object sender, EventArgs e)
+        {
+            ValidateFields();
+        }
+
+        private void CityTextBox_TextChanged(object sender, EventArgs e)
+        {
+            ValidateFields();
+        }
+
+        private void StateTextBox_TextChanged(object sender, EventArgs e)
+        {
+            ValidateFields();
+        }
+
+        private void ZipCodeTextBox_TextChanged(object sender, EventArgs e)
+        {
+            ValidateFields();
+        }
+
+        private void BeginningOdometerTextBox_TextChanged(object sender, EventArgs e)
+        {
+            ValidateFields();
+        }
+
+        private void EndingOdometerTextBox_TextChanged(object sender, EventArgs e)
+        {
+            ValidateFields();
+        }
+
+        private void NumberDaysTextBox_TextChanged(object sender, EventArgs e)
+        {
+            ValidateFields();
         }
     }
 }

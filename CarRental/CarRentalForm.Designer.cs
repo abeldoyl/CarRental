@@ -362,6 +362,7 @@
             SummaryButton.TabIndex = 32;
             SummaryButton.Text = "Summary";
             SummaryButton.UseVisualStyleBackColor = true;
+            SummaryButton.Click += SummaryButton_Click;
             // 
             // ExitButton
             // 
