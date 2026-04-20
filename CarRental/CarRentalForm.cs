@@ -1,3 +1,10 @@
+/*
+Abel Doyle
+RCET 2265
+Spring Semester 2026
+CarRental
+https://github.com/abeldoyl/CarRental.git
+*/
 namespace CarRental
 {
     public partial class CarRentalForm : Form
@@ -8,6 +15,7 @@ namespace CarRental
             SetDefaults();
         }
 
+        // Custom Methods Below -------------------------------------------------------------------
         int customerNumberTotal = 0;
         decimal distanceDrivenTotal = 0;
         decimal totalCharges = 0;
@@ -185,7 +193,9 @@ namespace CarRental
             }
             try
             {
-                if (int.Parse(BeginingOdometerTextBox.Text) < 0 || int.Parse(BeginingOdometerTextBox.Text) > (int.Parse(EndingOdometerTextBox.Text)))
+                if (int.Parse(BeginingOdometerTextBox.Text) < 0 || 
+                   (int.Parse(BeginingOdometerTextBox.Text)) > 
+                   (int.Parse(EndingOdometerTextBox.Text)))
                 {
                     message += "Please enter a valid begining number that is less than or equal to the ending number.\n";
                 }
@@ -311,6 +321,7 @@ namespace CarRental
             YouOweTextBox.Text = $"{amountDue:C}";
         }
 
+        // Event Handlers Below -------------------------------------------------------------------
         private void ExitButton_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Do you want to exit?", "Exit", MessageBoxButtons.YesNo);
